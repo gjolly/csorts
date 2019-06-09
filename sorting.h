@@ -7,5 +7,6 @@
 
 SORT(insertion);
 SORT(selection);
+SORT(merge);
 
 #endif
