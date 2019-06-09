@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 
-void insertion(void* a[], size_t, int (void*, void*));
+#define SORT(name) void name(void* array[], size_t lenght, size_t size, int comp(void*, void*))
+
+SORT(insertion);
+SORT(selection);
 
 #endif

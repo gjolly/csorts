@@ -3,8 +3,8 @@
 
 #include <stdlib.h>
 
-int compInt(int, int);
-void swap(void* a[], int, int);
-void printArray(int a[], char format[], size_t);
+int compInt(int*, int*);
+void swap(void* a[], size_t, int, int);
+void printArray(int a[], size_t);
 
 #endif

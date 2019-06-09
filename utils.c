@@ -1,22 +1,25 @@
 #include <string.h>
 #include <stdio.h>
+#include <malloc.h>
 
-void swap(void* array[], size_t i, size_t j) {
-	int size = sizeof(array[0]);
-	char tmp[size];
-	memcpy(tmp, array+i, size);
-	memcpy(array+i, array+j, size);
-	memcpy(array+j, tmp, size);
-}
-
-void printArray(int array[], char format[], size_t lenght) {
+void printArray(int array[], size_t lenght) {
 	printf("[ ");
 	for	(int i = 0; i < lenght; i++) {
-		printf(format, array[i]);
+		printf("%d ", array[i]);
 	}
-	printf("]");
+	printf("]\n");
 }
 
-int compInt(int a, int b) {
-	return a-b;
+void swap(void** array, size_t size, size_t i, size_t j) {
+	char* tmp = malloc(size);
+
+	memcpy(tmp, (char*)array+i*size, size);
+	memcpy((char*)array+i*size, (char*)array+j*size, size);
+	memcpy((char*)array+j*size, tmp, size);
+
+	free(tmp);
+}
+
+int compInt(int* a, int* b) {
+	return *a-*b;
 }

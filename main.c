@@ -1,8 +1,15 @@
 #include "sorting.h"
 #include "utils.h"
 
+#define SORT_ALGO selection 
+
 int main() {
 	int a[] = { 3, 43 , 32, 14, 65, 9, 8 };
-	
-	insertion((void**)a, sizeof(a), (int (*)(void*, void*))compInt);
+	int lenght = sizeof(a)/sizeof(int);
+
+	printArray(a, lenght);
+
+	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
+
+	printArray(a, lenght);
 }

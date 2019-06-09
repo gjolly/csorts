@@ -1,12 +1,14 @@
 CC=gcc
-CFLAG=-Wall -pedentic
-LIBS=./libs
+CFLAG=-Wall -pedantic -g
+OBJ_FILES=sorting.o main.o utils.o
 
-all: %.o
+all: sort
+
+sort: ${OBJ_FILES} 
 	${CC} ${CFLAG} -o $@ $^
 
-%.o: ${LIBS}/%.c
-	${CC} ${CFLAG} -c $@ $<
+%.o: %.c
+	${CC} ${CFLAG} -c $<
 
 clean:
-	rm *.o
+	rm -f *.o sort
