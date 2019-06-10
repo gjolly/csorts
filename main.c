@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "sorting.h"
 #include "utils.h"
 
@@ -12,30 +14,54 @@ void basic() {
 	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
 
 	printArray(a, lenght);
+	printf("\n");
 }
 
-void thousand(int size) {
-	int* a = malloc(size);
-
-	for (int i = 0; i < size; i++) {
-		a[i] = size - i;
-	}
-	
-	int lenght = size;
+void basic2() {
+	int a[] = { 10, 9 , 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+	int lenght = sizeof(a)/sizeof(int);
 
 	printArray(a, lenght);
 
 	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
 
 	printArray(a, lenght);
+	printf("\n");
+}
 
-	free(a);
+void basic3() {
+	int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int lenght = sizeof(a)/sizeof(int);
+
+	printArray(a, lenght);
+
+	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
+
+	printArray(a, lenght);
+	printf("\n");
+}
+
+void hundred() {
+	int a[110];
+
+	int lenght = 110;
+
+	for (int i = 0; i < lenght; i++) {
+		a[i] = i;
+	}
+
+	printArray(a, lenght);
+
+	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
+
+	printArray(a, lenght);
 }
 
 int main() {
 	basic();
-	thousand(100);
-	thousand(0);
+	basic2();
+	basic3();
+	hundred();
 
 	return 0;
 }
