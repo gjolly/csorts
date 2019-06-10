@@ -3,7 +3,7 @@
 #include <malloc.h>
 #include <stdarg.h>
 
-#define DEBUG 0
+#define DEBUG 0 
 
 int debug(const char *format, ...) {
 	va_list args;

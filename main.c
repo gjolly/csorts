@@ -3,7 +3,7 @@
 #include "sorting.h"
 #include "utils.h"
 
-#define SORT_ALGO merge
+#define SORT_ALGO merge 
 
 void basic() {
 	int a[] = { 3, 43 , 32, 14, 65, 9, 8 };
@@ -41,6 +41,18 @@ void basic3() {
 	printf("\n");
 }
 
+void empty() {
+	int* a = NULL;
+	int lenght = 0;
+
+	printArray(a, lenght);
+
+	SORT_ALGO((void**)a, lenght, sizeof(int), (int (*)(void*, void*))compInt);
+
+	printArray(a, lenght);
+	printf("\n");
+}
+
 void hundred() {
 	int a[110];
 
@@ -61,6 +73,7 @@ int main() {
 	basic();
 	basic2();
 	basic3();
+	empty();
 	hundred();
 
 	return 0;

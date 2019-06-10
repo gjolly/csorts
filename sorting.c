@@ -49,8 +49,6 @@ void merge_lists(void* a, size_t lenght_a, void* b, size_t lenght_b, size_t size
 			memcpy(get_elmt(tmp, i+j), get_elmt(b, j), size);
 			j++;
 		}
-		debug("tmp at step %lu: ", i+j);
-		debugArray((int*)tmp, lenght_a+lenght_b);
 	}
 
 	// once the smallest array is 'empty', place the end
@@ -60,8 +58,6 @@ void merge_lists(void* a, size_t lenght_a, void* b, size_t lenght_b, size_t size
 	else
 		memcpy(get_elmt(tmp, i+j), get_elmt(b, j), (lenght_b-j)*size);
 
-	debug("End merge: ");
-	debugArray((int*)tmp, lenght_a+lenght_b);
 
 	// tmp is copied and replace the array [[a] [b]]
 	memcpy(get_elmt(a, 0), tmp, size*(lenght_a+lenght_b));
@@ -93,20 +89,24 @@ SORT(merge) {
 		// At the beginning of each iteration, the size of the last
 		// sublist is (sublist_size+remains) and at the end it is
 		// (2*sublist_size+remains)
-		for (sli = 0; sli < sublist_nb/2; sli++) {
-			if (sli + 1 < sublist_nb/2 ) {
-				// Not the last one
-				merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
-			} else if (sublist_nb % 2 == 0) {
-				// if it is the last one
-				merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size+remains, size, comp);
-			} else {
-				merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
-			}
+		for (sli = 0; sli + 1 < sublist_nb/2; sli++) {
+			// Not the last one
+			merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
 		}
+
 		if (sublist_nb % 2 == 1) {
-			merge_lists(array(2*(sli-1)*sublist_size), sublist_size*2, array(2*sli*sublist_size), sublist_size+remains, size, comp);
+			// If one list is left alone, [ ... x y z]:
+			// x and y are merged...
+			merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
+
+			// z (wich contains the remains) is merged with [x y]  
+			merge_lists(array(2*sli*sublist_size), sublist_size*2, array(2*(sli+1)*sublist_size), sublist_size+remains, size, comp);
 			remains += sublist_size;
+		} else {
+			// if there is no sublist remaining at this point. The
+			// two final sublists are merged.
+			// Don't forget the previous remains!!
+			merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size+remains, size, comp);
 		}
 	}
 }
