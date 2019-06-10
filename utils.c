@@ -19,10 +19,10 @@ int debug(const char *format, ...) {
 	return ret;
 }
 
-void printArray(int array[], size_t lenght) {
+void printArray(char* format, void* array[], size_t lenght, size_t size) {
 	printf("[ ");
-	for	(int i = 0; i < lenght; i++) {
-		printf("%d ", array[i]);
+	for	(size_t i = 0; i < lenght; i++) {
+		printf(format, *((char*)array+i*size));
 	}
 	printf("]\n");
 }
@@ -49,3 +49,6 @@ int compInt(int* a, int* b) {
 	return *a-*b;
 }
 
+int compChar(char* a, char* b) {
+	return *a-*b;
+}
