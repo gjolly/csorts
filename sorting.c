@@ -30,14 +30,18 @@ SORT(selection) {
 }
 
 void merge_lists(void* a, size_t lenght_a, void* b, size_t lenght_b, size_t size, int comp(void*, void*)) {
+	
+	// tmp is a auxiliary array used to merge 
+	// a and b
 	char* tmp = malloc((lenght_a+lenght_b)*size);	
 
-	size_t i = 0;
-	size_t j = 0;
+	size_t i = 0; // indexes a
+	size_t j = 0; // indexes b
+
+	// Choose the biggest item between a[j] and b[j]
+	// and place it at tmp[i+j]. Repeat until a or b is
+	// 'empty'
 	while (i < lenght_a && j < lenght_b) {
-		int* ai = (int*)get_elmt(a,i);
-		int* bj = (int*)get_elmt(b,j);
-		debug("a=%d, b=%d\n", *ai, *bj);
 		if (comp(get_elmt(a, i), get_elmt(b, j)) > 0) {
 			memcpy(get_elmt(tmp, i+j), get_elmt(a, i), size);
 			i++;
@@ -49,36 +53,47 @@ void merge_lists(void* a, size_t lenght_a, void* b, size_t lenght_b, size_t size
 		debugArray((int*)tmp, lenght_a+lenght_b);
 	}
 
-	if (i < lenght_a) {
-		debug("a[%lu:%lu] ", i, lenght_a);
-		debugArray((int*)get_elmt(a, i), lenght_a-i);
+	// once the smallest array is 'empty', place the end
+	// of the biggest one at the end of tmp.
+	if (i < lenght_a)
 		memcpy(get_elmt(tmp, i+j), get_elmt(a, i), (lenght_a-i)*size);
-	} else {
-		debug("b[%lu:%lu] ", j, lenght_b);
-		debugArray((int*)get_elmt(b, j), lenght_b-j);
-		debug("%lu+%lu=%lu\n", i, j, i+j);
+	else
 		memcpy(get_elmt(tmp, i+j), get_elmt(b, j), (lenght_b-j)*size);
-	}
-
-	memcpy(get_elmt(a, 0), tmp, size*(lenght_a+lenght_b));
 
 	debug("End merge: ");
 	debugArray((int*)tmp, lenght_a+lenght_b);
 
+	// tmp is copied and replace the array [[a] [b]]
+	memcpy(get_elmt(a, 0), tmp, size*(lenght_a+lenght_b));
 	free(tmp);
-	debug("\n\n");
 }
 
+// Inplace merge sort.
+// [ w d a c e d q c g y w b  ]
+// The first step merges the items one by one to
+// form sublist of 2 elements sorted.
+// [ [d w] [a c] [d e] [q c] [g y] [b w] ]
+// then sublists are merged again
+// [[a c d w] [c d e q] [ b g w y ]] 
+// At this stage the number of sublist is not odd
+// Then the last one is merged with the two previous ones
+// to finally have a sorted array 
 SORT(merge) {
+	// (length of the last list) == (sublist_size + remains) 
 	size_t remains = 0;
-	for (int sublist_size = 1; sublist_size <= lenght/2; sublist_size*=2) {
 
-		debug("Sublist_size=%d\n\n", sublist_size);
+	for (int sublist_size = 1; sublist_size <= lenght/2; sublist_size*=2) {
 		size_t sublist_nb = lenght/sublist_size;
 	
-		size_t sli; 
+		size_t sli; // Sublist index 
+
+		// For each iteration, sublist size is fixed and at
+		// the end of a given iteration sublist sizes are double.
+		// The last sublist is an exception.
+		// At the beginning of each iteration, the size of the last
+		// sublist is (sublist_size+remains) and at the end it is
+		// (2*sublist_size+remains)
 		for (sli = 0; sli < sublist_nb/2; sli++) {
-			debug("merging (%lu, %lu)\n", 2*sli*sublist_size, (2*sli+1)*sublist_size);
 			if (sli + 1 < sublist_nb/2 ) {
 				// Not the last one
 				merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
@@ -88,14 +103,10 @@ SORT(merge) {
 			} else {
 				merge_lists(array(2*sli*sublist_size), sublist_size, array((2*sli+1)*sublist_size), sublist_size, size, comp);
 			}
-			debug("sli in loop: %d\n", sli);
 		}
-			debug("sli after loop: %d\n", sli);
 		if (sublist_nb % 2 == 1) {
-			debug("merging remaining (%lu, %lu)\n", 2*(sli-1)*sublist_size, 2*sli*sublist_size);
 			merge_lists(array(2*(sli-1)*sublist_size), sublist_size*2, array(2*sli*sublist_size), sublist_size+remains, size, comp);
 			remains += sublist_size;
 		}
-		debug("remains: %lu\n", remains);
 	}
 }
