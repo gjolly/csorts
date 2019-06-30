@@ -12,7 +12,7 @@ SORT(insertion) {
 	for (size_t i = 1; i < lenght; i++) {
 		size_t j = i;
 		while (j > 0 && comp(array(j), array(j-1)) > 0) {
-			swap(array, size, j-1, j);
+			array_swap(array, size, j-1, j);
 			j--;
 		}
 	}
@@ -25,7 +25,7 @@ SORT(selection) {
 			if (comp(array(i_max), array(j)) < 0)
 				i_max = j;
 		}
-		swap(array, size, i_max, i);
+		array_swap(array, size, i_max, i);
 	}
 }
 
