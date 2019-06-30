@@ -29,6 +29,9 @@ void test_assert_array_equal(Test* t, void* a, void* b, size_t size, size_t leng
 	}
 }
 
+// test_after_run runs after every test executed.
+// Depending on the test result, it prints a 
+// messsage.
 void test_after_run(Test* t) {
 	if (t->failed) {
 		out_printf_color(COLOR_RED, "FAILED");
@@ -42,12 +45,16 @@ void test_after_run(Test* t) {
 	}
 }
 
+// test_before_run runs before every test run.
+// It add the test name to the test object.
 void test_before_run(Test* t, char name[MAX_SIZE_NAME]){
 	strncpy(t->name, name, MAX_SIZE_REASON);
 }
 
-int main() {
+// main is running the tests.
+int main(int argc, char** argv) {
 	Test t;
+
 #include "test_functions_call.tmp"
 
 	return 0;
