@@ -11,7 +11,7 @@
 SORT(insertion) {
 	for (size_t i = 1; i < lenght; i++) {
 		size_t j = i;
-		while (j > 0 && comp(array(j), array(j-1)) > 0) {
+		while (j > 0 && comp(array(j), array(j-1)) < 0) {
 			array_swap(array, size, j-1, j);
 			j--;
 		}
@@ -20,12 +20,12 @@ SORT(insertion) {
 
 SORT(selection) {
 	for (size_t i = 0; i < lenght; i++) {
-		size_t i_max = i;
+		size_t i_min = i;
 		for (size_t j = i + 1; j < lenght; j++) {
-			if (comp(array(i_max), array(j)) < 0)
-				i_max = j;
+			if (comp(array(i_min), array(j)) > 0)
+				i_min = j;
 		}
-		array_swap(array, size, i_max, i);
+		array_swap(array, size, i_min, i);
 	}
 }
 
@@ -42,7 +42,7 @@ void merge_lists(void* a, size_t lenght_a, void* b, size_t lenght_b, size_t size
 	// and place it at tmp[i+j]. Repeat until a or b is
 	// 'empty'
 	while (i < lenght_a && j < lenght_b) {
-		if (comp(get_elmt(a, i), get_elmt(b, j)) > 0) {
+		if (comp(get_elmt(a, i), get_elmt(b, j)) < 0) {
 			memcpy(get_elmt(tmp, i+j), get_elmt(a, i), size);
 			i++;
 		} else {
