@@ -4,11 +4,14 @@
 #include "utils.h"
 #include "out.h"
 #include "test.h" 
+
+#ifndef SORT_ALGO
 #define SORT_ALGO insertion 
+#endif
 
 TEST(basic) {
 	int a[] = { 3, 43 , 32, 14, 65, 9, 8 };
-	int out[] = { 3, 2, 9, 14, 32, 43, 65 };
+	int out[] = { 3, 8, 9, 14, 32, 43, 65 };
 	int length = sizeof(a)/sizeof(int);
 
 	out_debug_array_int(a, length);
