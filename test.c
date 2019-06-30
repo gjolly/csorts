@@ -48,7 +48,7 @@ void test_before_run(Test* t, char name[MAX_SIZE_NAME]){
 
 int main() {
 	Test t;
-#include "test_functions_call"
+#include "test_functions_call.tmp"
 
 	return 0;
 }

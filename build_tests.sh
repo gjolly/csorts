@@ -1,7 +1,7 @@
 #!/bin/bash
 
-test_function_call="test_functions_call"
-test_function_signatures="test_functions_signatures"
+test_function_call="test_functions_call.tmp"
+test_function_signatures="test_functions_signatures.tmp"
 
 #------------------------------------------------------------------------
 # Clean up old runs

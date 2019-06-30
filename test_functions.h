@@ -3,6 +3,6 @@
 
 #include "test.h"
 
-#include "test_functions_signatures"
+#include "test_functions_signatures.tmp"
 
 #endif
