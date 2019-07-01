@@ -6,7 +6,7 @@ typedef struct List {
 	struct List* sl;
 } List;
 
-List* list_create();
+List* list_new();
 void list_destroy(List** l);
 void* list_pop(List** l);
 void list_push(List** l, void* elmt);

@@ -18,5 +18,5 @@ make -B test SORT_ALGO="$SORT_ALGO" > /dev/null
 
 #-----------------------------------------------------
 # Run the tests
-./test "$1"
+./test
 
