@@ -3,19 +3,16 @@
 
 #include <stdlib.h>
 
-typedef struct Tree {
-	void* node;
-	struct Tree* parent;
-	struct Tree* left;
-	struct Tree* righ;	
-} Tree;
+#include "tree.h"
 
 typedef struct Heap {
 	Tree* root;
-	size_t size;
+	Tree* bottom;
+	size_t length;
 } Heap;
 
-void sift_down(Heap* t, void* node, size_t size, int comp(void*, void*));
-void sift_up(Heap* t, void* node, size_t size, int comp(void*, void*));
+Heap* heap_new();
+void insert(Heap* heap, void* node, int comp(void*, void*));
+void* pop(Heap* heap, int comp(void*, void*));
 
 #endif

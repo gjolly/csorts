@@ -5,8 +5,8 @@
 #include "test_functions.h"
 
 void test_fail(Test* t, char reason[]) {
-	t->failed = 1;
-	strncpy(t->reason, reason, 100);
+    t->failed = 1;
+    strncpy(t->reason, reason, 100);
 }
 
 int main() {

@@ -3,3 +3,4 @@ sort
 tags
 *.tmp
 test
+.gdb_history

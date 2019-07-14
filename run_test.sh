@@ -3,9 +3,9 @@
 
 #-----------------------------------------------------------------
 # Get user input
-SORT_ALGO=${SORT_ALGO:-merge}
+SORT_ALGO=${SORT_ALGO:-heap}
 
-printf "Compiling with SORT_ALGO=\e[96m%s\e[0m\n\n" "$SORT_ALGO"
+printf "Compiling with SORT_ALGO=\e[96m%s\e[0m\n" "$SORT_ALGO"
 
 #-----------------------------------------------------------------
 # Build the test files for compilation
