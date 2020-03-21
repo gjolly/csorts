@@ -23,4 +23,6 @@ TEST(list_touch) {
 
     for (int i = 0; i < 10; i++)
         test_assert(t, *(int*)list_touch(l) == elmt, "wrong item");
+
+    list_destroy(&l);
 }

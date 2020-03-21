@@ -1,4 +1,4 @@
-CC=gcc
+CC ?= gcc
 CFLAG=-Wall -pedantic -g --std=c11
 
 OBJ_FILES=sorting.o utils.o test.o out.o list.o heap.o tree.o
@@ -14,7 +14,7 @@ all:
 %.o: %.c ${HEADER_FILES}
 	${CC} ${CFLAG} -c $< -DSORT_ALGO=${SORT_ALGO}
 
-test: ${OBJ_TEST} ${OBJ_FILES} ${HEADER_FILES}
+test: ${OBJ_TEST} ${OBJ_FILES}
 	${CC} ${CFLAG} -o $@ $^
 
 clean:

@@ -56,6 +56,8 @@ void test_before_run(Test* t, char name[MAX_SIZE_NAME]){
 // main is running the tests.
 int main(int argc, char** argv) {
     Test t;
+    strcpy(t.name, "\0");
+    strcpy(t.reason, "\0");
     t.failed = false;
     t.global_failure = false;
 

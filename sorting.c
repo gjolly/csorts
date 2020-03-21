@@ -124,4 +124,8 @@ SORT(heap) {
 
     for (size_t i = 0; i < length; i++)
         memcpy((char*)array + i*size, tmp_array + i*size, size);
+
+    free(tmp_array);
+    free(heap->root);
+    free(heap);
 }

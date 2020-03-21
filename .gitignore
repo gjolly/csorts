@@ -4,3 +4,4 @@ tags
 *.tmp
 test
 .gdb_history
+valgrind_report.txt

@@ -53,7 +53,7 @@ void tree_swap_node(Tree* a, Tree* b) {
 
 
 void tree_destroy(Tree* t) {
-    //free(t);
+    free(t);
 }
 
 void tree_make_orphelin(Tree* t) {

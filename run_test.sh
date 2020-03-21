@@ -1,5 +1,11 @@
 #!/bin/bash
 
+VALGRIND="$(command -v valgrind)"
+
+if [[ $? -eq 0 ]]; then
+  echo "Running with Valgrind"
+  VALGRIND_CMD="$VALGRIND --leak-check=full -q --error-exitcode=1"
+fi
 
 #-----------------------------------------------------------------
 # Get user input
@@ -28,5 +34,5 @@ make -B test SORT_ALGO="$SORT_ALGO" > /dev/null
 
 #-----------------------------------------------------------------
 # Run the tests
-./test
+${VALGRIND_CMD} ./test 2> valgrind_report.txt
 
