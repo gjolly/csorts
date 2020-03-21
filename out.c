@@ -24,7 +24,7 @@ int out_printf_color(const char *color_code, const char *format, ...) {
 
     int ret = 0;
 
-    printf(color_code);
+    printf("%s", color_code);
     ret = vprintf(format, args);
     printf(COLOR_WHITE);
 

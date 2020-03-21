@@ -1,0 +1,15 @@
+arch:
+  - amd64
+  - arm64
+
+os: linux
+
+language: c
+
+compiler:
+  - gcc
+  - clang
+
+install: make
+
+script: make

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "test.h"
 #include "out.h"
@@ -36,7 +37,8 @@ void test_after_run(Test* t) {
     if (t->failed) {
         out_printf_color(COLOR_RED, "FAILED");
         printf(": %s: %s\n", t->name, t->reason);
-        t->failed = 0;
+        t->failed = false;
+        t->global_failure = true;
         if (FAIL_FAST)
             exit(1);
     } else {
@@ -54,8 +56,10 @@ void test_before_run(Test* t, char name[MAX_SIZE_NAME]){
 // main is running the tests.
 int main(int argc, char** argv) {
     Test t;
+    t.failed = false;
+    t.global_failure = false;
 
 #include "test_functions_call.tmp"
 
-    return 0;
+    return t.global_failure;
 }

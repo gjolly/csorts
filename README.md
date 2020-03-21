@@ -1,5 +1,7 @@
 # csorts
 
+[![Build Status](https://travis-ci.org/gjolly/csorts.svg?branch=master)](https://travis-ci.org/gjolly/csorts)
+
 Implementing all the sort algorithms in C. You can find the algorithms in [sorting.c](sorting.c).
 
 ## Testing

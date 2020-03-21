@@ -9,6 +9,7 @@
 
 typedef struct Test {
 	char name[MAX_SIZE_NAME];
+        int global_failure;
 	int failed;
 	char reason[MAX_SIZE_REASON];
 } Test;
