@@ -4,12 +4,15 @@ arch:
 
 os: linux
 
+addons:
+  apt:
+    packages:
+      - valgrind
+
 language: c
 
 compiler:
   - gcc
   - clang
-
-install: make
 
 script: make

@@ -4,6 +4,9 @@
 #include "utils.h"
 
 void swap(void* a, void* b, size_t size) {
+    if (a == b)
+      return;
+
     char* tmp = malloc(size);
 
     memcpy(tmp, a, size);

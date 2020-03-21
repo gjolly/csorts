@@ -34,5 +34,5 @@ make -B test SORT_ALGO="$SORT_ALGO" > /dev/null
 
 #-----------------------------------------------------------------
 # Run the tests
-${VALGRIND_CMD} ./test 2> valgrind_report.txt
+${VALGRIND_CMD} ./test 2>> valgrind_report.txt
 
