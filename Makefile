@@ -8,12 +8,7 @@ BIN_FILE=test
 
 SORT_ALGO=insertion
 
-all: lint run_test
-
-lint:
-	clang-format -i *.c *.h
-
-run_test:
+all:
 	./all_tests.sh
 
 %.o: %.c ${HEADER_FILES}
