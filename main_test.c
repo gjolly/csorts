@@ -1,52 +1,55 @@
 #include <stdio.h>
 
-#include "sorting.h"
-#include "utils.h"
 #include "out.h"
+#include "sorting.h"
 #include "test.h"
+#include "utils.h"
 
 #ifndef SORT_ALGO
 #define SORT_ALGO insertion
 #endif
 
 TEST(sort_basic) {
-    int a[] = { 3, 43 , 32, 14, 65, 9, 8 };
-    int out[] = { 3, 8, 9, 14, 32, 43, 65 };
-    int length = sizeof(a)/sizeof(int);
+    int a[] = {3, 43, 32, 14, 65, 9, 8};
+    int out[] = {3, 8, 9, 14, 32, 43, 65};
+    int length = sizeof(a) / sizeof(int);
 
     out_debug_array_int(a, length);
 
     SORT_ALGO((void*)a, length, sizeof(int), (int (*)(void*, void*))compInt);
 
-    test_assert_array_equal(t, a, out, sizeof(int), length, (int (*)(void*, void*))compInt);
+    test_assert_array_equal(t, a, out, sizeof(int), length,
+                            (int (*)(void*, void*))compInt);
     out_debug_array_int(a, length);
     out_debugf("\n");
 }
 
 TEST(sort_basic2) {
-    int a[] = { 10, 9 , 8, 7, 6, 5, 4, 3, 2, 1, 0 };
-    int out[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    int length = sizeof(a)/sizeof(int);
+    int a[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int length = sizeof(a) / sizeof(int);
 
     out_debug_array_int(a, length);
 
     SORT_ALGO((void*)a, length, sizeof(int), (int (*)(void*, void*))compInt);
 
-    test_assert_array_equal(t, a, out, sizeof(int), length, (int (*)(void*, void*))compInt);
+    test_assert_array_equal(t, a, out, sizeof(int), length,
+                            (int (*)(void*, void*))compInt);
     out_debug_array_int(a, length);
     out_debugf("\n");
 }
 
 TEST(sort_basic3) {
-    int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int out[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    int length = sizeof(a)/sizeof(int);
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int out[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int length = sizeof(a) / sizeof(int);
 
     out_debug_array_int(a, length);
 
     SORT_ALGO((void*)a, length, sizeof(int), (int (*)(void*, void*))compInt);
 
-    test_assert_array_equal(t, a, out, sizeof(int), length, (int (*)(void*, void*))compInt);
+    test_assert_array_equal(t, a, out, sizeof(int), length,
+                            (int (*)(void*, void*))compInt);
     out_debug_array_int(a, length);
     out_debugf("\n");
 }
@@ -79,13 +82,15 @@ TEST(sort_hundred) {
 
     SORT_ALGO((void*)a, length, sizeof(int), (int (*)(void*, void*))compInt);
 
-    test_assert_array_equal(t, a, out, sizeof(int), length, (int (*)(void*, void*))compInt);
+    test_assert_array_equal(t, a, out, sizeof(int), length,
+                            (int (*)(void*, void*))compInt);
     out_debug_array_int(a, length);
     out_debugf("\n");
 }
 
 TEST(sort_characters) {
-    char a[] = {'s', 'a', 'g', 'j', 'f', 'd', 'e', 'h', 'u', 'r', 't', '3', 'b'};
+    char a[] = {'s', 'a', 'g', 'j', 'f', 'd', 'e',
+                'h', 'u', 'r', 't', '3', 'b'};
 
     int length = 13;
 
@@ -96,4 +101,3 @@ TEST(sort_characters) {
     out_debug_array("%c ", a, length, sizeof(char));
     out_debugf("\n");
 }
-

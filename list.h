@@ -2,8 +2,8 @@
 #define LIST_H
 
 typedef struct List {
-	void* elmt;
-	struct List* sl;
+    void* elmt;
+    struct List* sl;
 } List;
 
 List* list_new();

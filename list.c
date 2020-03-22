@@ -1,6 +1,6 @@
-#include <stdlib.h>
-
 #include "list.h"
+
+#include <stdlib.h>
 
 List* list_new() {
     return NULL;
@@ -32,7 +32,7 @@ void* list_pop(List** l) {
 }
 
 void list_destroy(List** l) {
-    while(*l != NULL) {
+    while (*l != NULL) {
         list_pop(l);
     }
 }

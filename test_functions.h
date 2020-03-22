@@ -2,7 +2,6 @@
 #define H_TEST_FUNCTIONS
 
 #include "test.h"
-
 #include "test_functions_signatures.tmp"
 
 #endif

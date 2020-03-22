@@ -4,10 +4,10 @@
 #include <stdbool.h>
 
 typedef struct Tree {
-	void* node;
-	struct Tree* parent;
-	struct Tree* left;
-	struct Tree* right;
+    void* node;
+    struct Tree* parent;
+    struct Tree* left;
+    struct Tree* right;
 } Tree;
 
 Tree* tree();

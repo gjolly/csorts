@@ -1,12 +1,13 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-
 #include "test.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "out.h"
-#include "utils.h"
 #include "test_functions.h"
+#include "utils.h"
 
 #define FAIL_FAST 0
 
@@ -21,9 +22,14 @@ void test_assert(Test* t, int boolean, char reason[]) {
     }
 }
 
-void test_assert_array_equal(Test* t, void* a, void* b, size_t size, size_t length, int comp(void*, void*)) {
+void test_assert_array_equal(Test* t,
+                             void* a,
+                             void* b,
+                             size_t size,
+                             size_t length,
+                             int comp(void*, void*)) {
     for (int i = 0; i < length; i++) {
-        if (comp((char*)a+i*size, (char*)b+i*size) != 0) {
+        if (comp((char*)a + i * size, (char*)b + i * size) != 0) {
             test_fail(t, "Arrays not equal");
             return;
         }
@@ -49,7 +55,7 @@ void test_after_run(Test* t) {
 
 // test_before_run runs before every test run.
 // It add the test name to the test object.
-void test_before_run(Test* t, char name[MAX_SIZE_NAME]){
+void test_before_run(Test* t, char name[MAX_SIZE_NAME]) {
     strncpy(t->name, name, MAX_SIZE_REASON);
 }
 

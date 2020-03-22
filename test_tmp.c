@@ -10,7 +10,5 @@ void test_fail(Test* t, char reason[]) {
 }
 
 int main() {
-
-    toto_test(t)
-    fist_test(t)
+    toto_test(t) fist_test(t)
 }

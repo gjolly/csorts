@@ -1,10 +1,11 @@
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include "heap.h"
-#include "utils.h"
+
+#include <stdbool.h>
+#include <stdlib.h>
+
 #include "list.h"
 #include "tree.h"
+#include "utils.h"
 
 Heap* heap_new() {
     Heap* h = malloc(sizeof(Heap));
@@ -37,11 +38,11 @@ void insert(Heap* heap, void* node, int comp(void*, void*)) {
 void* pop(Heap* heap, int comp(void*, void*)) {
     Tree* new_bottom = tree_previous_bottom(heap->bottom);
 
-    //if we are at the root, its pretty simple
+    // if we are at the root, its pretty simple
     if (!new_bottom) {
-      void* n = heap->bottom->node;
-      heap->bottom->node = NULL;
-      return n;
+        void* n = heap->bottom->node;
+        heap->bottom->node = NULL;
+        return n;
     }
 
     tree_make_orphelin(heap->bottom);
@@ -55,7 +56,8 @@ void* pop(Heap* heap, int comp(void*, void*)) {
     new_bottom->node = NULL;
 
     Tree* current_tree = heap->root;
-    while((current_tree = tree_down_node(current_tree, comp)));
+    while ((current_tree = tree_down_node(current_tree, comp)))
+        ;
 
     return node;
 }

@@ -6,9 +6,9 @@
 #include "tree.h"
 
 typedef struct Heap {
-	Tree* root;
-	Tree* bottom;
-	size_t length;
+    Tree* root;
+    Tree* bottom;
+    size_t length;
 } Heap;
 
 Heap* heap_new();
